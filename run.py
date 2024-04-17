@@ -30,4 +30,6 @@ def print_rules():
     print("   counts as a fail.")
     print("3. You only have 6 tries, or you loose the game.\n")
 
+
+
 main()
