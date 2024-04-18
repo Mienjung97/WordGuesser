@@ -1,29 +1,45 @@
 import random
+import time
 from words import word_list
+
+def pause(u):
+    """
+    Function to delay print statements adn takes a float as delay
+    in seconds.
+    """
+    time.sleep(u)
 
 def log_in():
     """
     Function that asks user for their name and greets them to the game.
     """
-
     name = input("\nPlease enter your name: \n")
+    print("-"*23)
     print(f"\nHello {name} and welcome to WordGuesser\n")
+    pause(1)
 
 def print_rules():
     """
     Function that prints the rules and game explanation.
     """
-
+    print("-"*56, "\n")
     print("WordGuesser is a game like Hangman, just less cruel.\n")
+    pause(2)
     print("The game works as following:\n")
-    print("1. You need to try and guess the word, letter by letter.")
+    pause(0.5)
+    print("1. You need to try and guess the word, letter by letter.\n")
+    pause(0.5)
     print("2. With each try, you will put in a single letter ")
-    print("   that you think is contained in the word.")
+    print("   that you think is contained in the word.\n")
+    pause(0.5)
     print("3. If the letter you provided is contained in the word,")
     print("   the game is going to show you in which position it is.")
     print("   If the word does not contain the letter, your try ")
-    print("   counts as a fail.")
-    print("3. You only have 6 tries, or you loose the game.\n")
+    print("   counts as a fail.\n")
+    pause(0.5)
+    print("6. You only have 6 tries, or you loose the game.\n")
+    print("-"*56, "\n")
+    pause(1)
 
 def get_word():
     """
@@ -43,7 +59,7 @@ def check_letter(word):
     """
     tries = 6
     current_word = word
-    print(word)
+    #print(word)
     while tries > 0:
         x = input("Take your guess: \n")
         if x in current_word:
