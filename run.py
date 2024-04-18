@@ -48,10 +48,31 @@ def get_word():
     """
     word = random.choice(word_list)
     return word.lower()
-
-def check_letter(word):
+        
+def restart_question():
     """
-    Function that checks the user input and compares it to the word.
+    This function will ask the user if they would like to restart the game
+    or exit the program. Error handleing for wrong input is included.#
+    """
+    y = input("Would you like to restart the game? (Y/N)\n")
+    if y.lower() == "y":
+        new_word = get_word()
+        run_game(new_word)
+    elif y.lower() == "n":
+        print("Thanks for playing the game!")
+    else:
+        print("Please enter a valid input.")
+        return restart_question()
+
+def print_correct(i,tries):
+    pause(0.5)
+    print(f"\nCongratulations! {i} is in the word!")
+    print(f"You still have {tries} tries left.\n")
+
+def run_game(word):
+    """
+    Function that runs the main game: It calls functions to check the user input and
+    compares it to the word in question.
     If the letter is in the word, the game progresses (more needs to be implemented)
     If the letter is not in the word, the try counter will be decreased.
     If all tries are used up, the player can choose to either start a new game
@@ -59,35 +80,31 @@ def check_letter(word):
     """
     tries = 6
     current_word = word
-    #print(word)
+    print(word)
     while tries > 0:
         x = input("Take your guess: \n")
         if x in current_word:
-            print(f"Congratulations! {x} is in the word!")
-            print(f"You have {tries} tries left.")
+            print_correct(x,tries)            
         else:
-            print(f"Sorry, {x} is not part of the word.")
+            print(f"\nSorry, {x} is not part of the word.")
             tries -= 1
-            print(f"You have {tries} tries left.")
+            print(f"You have {tries} tries left.\n")
     else:
         print("You are out of tries and lost!")
-        y = input("Would you like to restart the game? (Y/N)")
-        if y.lower() == "y":
-            new_word = get_word()
-            check_letter(new_word)
-        else:
-            print("Thanks for playing the game!")
-
+        restart_question()
 
 
 
 
 
 def main():
+    """
+    Main function that calls every function that is needed for the game.
+    """
     log_in()
     print_rules()
     word = get_word()
-    check_letter(word)
+    run_game(word)
 
 
 main()
