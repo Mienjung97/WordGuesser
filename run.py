@@ -64,11 +64,17 @@ def restart_question():
         print("Please enter a valid input.")
         return restart_question()
 
-def print_correct(i,tries):
+def print_correct(i,word, new_list):
     pause(0.5)
-    print(f"\nCongratulations! {i} is in the word!")
-    print(f"You still have {tries} tries left.\n")
-
+    # https://stackoverflow.com/questions/56324522/program-in-python-to-show-letters-guessed-in-a-hangman-game-not-working
+    pos_list = new_list
+    for char in word:
+        print(f"\nCongratulations! {i} is in the word!\n")
+        position = word.find(i)
+        pos_list[position] = i
+        print (' '.join(pos_list))
+        break
+    
 def run_game(word):
     """
     Function that runs the main game: It calls functions to check the user input and
@@ -80,11 +86,16 @@ def run_game(word):
     """
     tries = 6
     current_word = word
+    pos_list = ['_' for x in range(len(word))]
     print(word)
+    print(f"\nThe word has {len(word)} letters:")
+    print("_"*len(word))
     while tries > 0:
-        x = input("Take your guess: \n")
+        x = input("\nTake your guess: \n")
+        #need to check for single character
         if x in current_word:
-            print_correct(x,tries)            
+            print_correct(x, word, pos_list) 
+            print(f"You still have {tries} tries left.\n")           
         else:
             print(f"\nSorry, {x} is not part of the word.")
             tries -= 1
@@ -94,17 +105,13 @@ def run_game(word):
         restart_question()
 
 
-
-
-
 def main():
     """
     Main function that calls every function that is needed for the game.
     """
-    log_in()
-    print_rules()
+    #log_in()
+    #print_rules()
     word = get_word()
     run_game(word)
-
 
 main()
