@@ -56,6 +56,8 @@ def restart_question():
     """
     y = input("Would you like to restart the game? (Y/N)\n")
     if y.lower() == "y":
+        print("\n")
+        print("-"*56, "\n")
         new_word = get_word()
         run_game(new_word)
     elif y.lower() == "n":
@@ -63,6 +65,18 @@ def restart_question():
     else:
         print("Please enter a valid input.")
         return restart_question()
+
+def guessed_letter_check(i):
+    if len(i) == 1:
+        if i.isalpha():
+            return i
+        elif not i.isalpha():
+            print("Please enter only letters, no numbers.")
+            return ValueError("No numbers are allowed")
+    elif len(i) != 1:
+        print("Please enter only one letter.")
+        return ValueError("Please enter only one letter.")
+        
 
 def print_correct(i,word, new_list):
     pause(0.5)
@@ -72,7 +86,7 @@ def print_correct(i,word, new_list):
         print(f"\nCongratulations! {i} is in the word!\n")
         position = word.find(i)
         pos_list[position] = i
-        print (' '.join(pos_list))
+        print (' '.join(pos_list), "\n")
         break
     
 def run_game(word):
@@ -88,18 +102,25 @@ def run_game(word):
     current_word = word
     pos_list = ['_' for x in range(len(word))]
     print(word)
-    print(f"\nThe word has {len(word)} letters:")
-    print("_"*len(word))
+    print(f"\nThe word has {len(word)} letters:\n")
+    print("_ "*len(word))
     while tries > 0:
         x = input("\nTake your guess: \n")
         #need to check for single character
-        if x in current_word:
-            print_correct(x, word, pos_list) 
-            print(f"You still have {tries} tries left.\n")           
-        else:
-            print(f"\nSorry, {x} is not part of the word.")
-            tries -= 1
-            print(f"You have {tries} tries left.\n")
+        guessed_letter_check(x)
+        while True:
+            if x in current_word:
+                print_correct(x, word, pos_list) 
+                print(f"You still have {tries} tries left.\n")
+                break
+            elif ValueError:
+                break
+            elif x not in current_word:
+                print(f"\nSorry, {x} is not part of the word.")
+                tries -= 1
+                print(f"You have {tries} tries left.\n")
+                break
+            
     else:
         print("You are out of tries and lost!")
         restart_question()
