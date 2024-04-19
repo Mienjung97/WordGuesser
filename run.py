@@ -65,12 +65,14 @@ def get_word():
 def restart_question():
     """
     This function will ask the user if they would like to restart the game
-    or exit the program. Error handleing for wrong input is included.#
+    or exit the program. Error handleing for wrong input is included, as well
+    as clearing the list of duplicate inputs.
     """
     y = input("Would you like to restart the game? (Y/N)\n")
     if y.lower() == "y":
         print("\n")
         print("-"*56, "\n")
+        guessed_letters.clear()
         new_word = get_word()
         run_game(new_word)
     elif y.lower() == "n":
@@ -79,16 +81,26 @@ def restart_question():
         print("Please enter a valid input.")
         return restart_question()
 
+
 def guessed_letter_check():
     """
     This function asks the user for the input and only returns it to the 
     "run_game" function after validating that it is only a single letter from
     the alphabet and no letters or signs.
     """
+
     i = input("\nTake your guess: \n")
     if len(i) == 1:
         if i.isalpha():
-            return i
+            if i in guessed_letters:
+                print(f"The letter {i} already has been guessed by you.")
+                print("All the letters you have guessed so far are:")
+                print (' '.join(guessed_letters), "\n")
+                print("Please try again!")
+                return guessed_letter_check()
+            else:
+                guessed_letters.append(i)
+                return i
         else:
             print("Please enter only letters, no numbers.")
             return guessed_letter_check()
@@ -118,6 +130,15 @@ def print_correct(i,word, new_list):
             restart_question()
         else:
             return pos_list
+
+# def guess(x, word):
+#     letter = x
+#     if letter in word:
+#         print ("Correct!")
+#         letterPlace = [m.start() for m in re.finditer(letter, word)]
+#         for index in letterPlace:
+#             answer[index] = letter
+#     print(letterPlace)
     
 def run_game(word): # add name to variables later, so print massage can be 
                     # customized
@@ -139,7 +160,8 @@ def run_game(word): # add name to variables later, so print massage can be
         x = guessed_letter_check()
         while True:
             if x in current_word:
-                print_correct(x, word, pos_list) 
+                print_correct(x, word, pos_list)
+                # guess(x, word) 
                 print(f"You still have {tries} tries left.\n")
                 break
             elif x not in current_word:
@@ -156,6 +178,7 @@ def run_game(word): # add name to variables later, so print massage can be
         print(f"the word you were trying to guess was {word}\n")
         restart_question()
 
+guessed_letters = []
 
 def main():
     """
