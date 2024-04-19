@@ -1,5 +1,6 @@
 import random
 import time
+import re
 from words import word_list
 
 def pause(u):
@@ -12,7 +13,10 @@ def pause(u):
 def log_in():
     """
     Function that asks user for their name and greets them to the game,
-    additionally limits the lenght of the name to 23 characters.y
+    additionally limits the lenght of the name to 23 characters.
+    Info: Any character is allowed in case one wants to use their
+    username instead of real name - or X Æ A-12 Musk (Son of Elon Musk)
+    would like to play.
     """
     name = input("\nPlease enter your name: \n")
     while len(name) <= 23:
@@ -25,6 +29,7 @@ def log_in():
     print("-"*23)
     print(f"\nHello {name} and welcome to WordGuesser\n")
     pause(1)
+    return name
 
 def print_rules():
     """
@@ -83,7 +88,6 @@ def guessed_letter_check():
     i = input("\nTake your guess: \n")
     if len(i) == 1:
         if i.isalpha():
-            print('i is alpha')
             return i
         else:
             print("Please enter only letters, no numbers.")
@@ -108,9 +112,15 @@ def print_correct(i,word, new_list):
         position = word.find(i)
         pos_list[position] = i
         print (' '.join(pos_list), "\n")
-        break
+        if "_" not in pos_list:
+            # make name come in for better UX
+            print("Concratulations, you won!\n")
+            restart_question()
+        else:
+            return pos_list
     
-def run_game(word):
+def run_game(word): # add name to variables later, so print massage can be 
+                    # customized
     """
     Function that runs the main game: It calls functions to check the user input and
     compares it to the word in question.
@@ -134,6 +144,8 @@ def run_game(word):
                 break
             elif x not in current_word:
                 print(f"\nSorry, {x} is not part of the word.")
+                print(f"Your current progress is:")
+                print (' '.join(pos_list), "\n")
                 tries -= 1
                 print(f"You have {tries} tries left.\n")
                 break
@@ -141,6 +153,7 @@ def run_game(word):
                 break
     else:
         print("You are out of tries and lost!")
+        print(f"the word you were trying to guess was {word}\n")
         restart_question()
 
 
@@ -148,7 +161,7 @@ def main():
     """
     Main function that calls every function that is needed for the game.
     """
-    log_in()
+    #log_in()
     #print_rules()
     word = get_word()
     run_game(word)
