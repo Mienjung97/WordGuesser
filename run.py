@@ -11,9 +11,17 @@ def pause(u):
 
 def log_in():
     """
-    Function that asks user for their name and greets them to the game.
+    Function that asks user for their name and greets them to the game,
+    additionally limits the lenght of the name to 23 characters.y
     """
     name = input("\nPlease enter your name: \n")
+    while len(name) <= 23:
+        break
+    else:
+        print("\nYour name is too long for this program.")
+        print("Please make it shorter.\n")
+        return log_in()
+            
     print("-"*23)
     print(f"\nHello {name} and welcome to WordGuesser\n")
     pause(1)
@@ -140,7 +148,7 @@ def main():
     """
     Main function that calls every function that is needed for the game.
     """
-    #log_in()
+    log_in()
     #print_rules()
     word = get_word()
     run_game(word)
