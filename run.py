@@ -67,6 +67,11 @@ def restart_question():
         return restart_question()
 
 def guessed_letter_check():
+    """
+    This function asks the user for the input and only returns it to the 
+    "run_game" function after validating that it is only a single letter from
+    the alphabet and no letters or signs.
+    """
     i = input("\nTake your guess: \n")
     if len(i) == 1:
         if i.isalpha():
@@ -81,7 +86,13 @@ def guessed_letter_check():
         
 
 def print_correct(i,word, new_list):
+    """
+    Gets the correct letter passed by "run_game", searches for its 
+    position in the word to guess and prints it accordingly to the 
+    console.
+    """
     pause(0.5)
+    # Idea for how to create the pos_list comes from:
     # https://stackoverflow.com/questions/56324522/program-in-python-to-show-letters-guessed-in-a-hangman-game-not-working
     pos_list = new_list
     for char in word:
@@ -107,8 +118,6 @@ def run_game(word):
     print(f"\nThe word has {len(word)} letters:\n")
     print("_ "*len(word))
     while tries > 0:
-        
-        #need to check for single character
         x = guessed_letter_check()
         while True:
             if x in current_word:
@@ -122,7 +131,6 @@ def run_game(word):
                 break
             elif ValueError:
                 break
-            
     else:
         print("You are out of tries and lost!")
         restart_question()
