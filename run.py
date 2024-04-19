@@ -66,16 +66,18 @@ def restart_question():
         print("Please enter a valid input.")
         return restart_question()
 
-def guessed_letter_check(i):
+def guessed_letter_check():
+    i = input("\nTake your guess: \n")
     if len(i) == 1:
         if i.isalpha():
+            print('i is alpha')
             return i
-        elif not i.isalpha():
+        else:
             print("Please enter only letters, no numbers.")
-            return ValueError("No numbers are allowed")
+            return guessed_letter_check()
     elif len(i) != 1:
         print("Please enter only one letter.")
-        return ValueError("Please enter only one letter.")
+        return guessed_letter_check()
         
 
 def print_correct(i,word, new_list):
@@ -105,20 +107,20 @@ def run_game(word):
     print(f"\nThe word has {len(word)} letters:\n")
     print("_ "*len(word))
     while tries > 0:
-        x = input("\nTake your guess: \n")
+        
         #need to check for single character
-        guessed_letter_check(x)
+        x = guessed_letter_check()
         while True:
             if x in current_word:
                 print_correct(x, word, pos_list) 
                 print(f"You still have {tries} tries left.\n")
                 break
-            elif ValueError:
-                break
             elif x not in current_word:
                 print(f"\nSorry, {x} is not part of the word.")
                 tries -= 1
                 print(f"You have {tries} tries left.\n")
+                break
+            elif ValueError:
                 break
             
     else:
