@@ -77,10 +77,10 @@ def restart_question():
         run_game(new_word)
     elif y.lower() == "n":
         print("Thanks for playing the game!")
+        exit()
     else:
         print("Please enter a valid input.")
         return restart_question()
-
 
 def guessed_letter_check():
     """
@@ -108,7 +108,6 @@ def guessed_letter_check():
         print("Please enter only one letter.")
         return guessed_letter_check()
         
-
 def print_correct(i,word, new_list):
     """
     Gets the correct letter passed by "run_game", searches for its 
@@ -116,13 +115,14 @@ def print_correct(i,word, new_list):
     console.
     """
     pause(0.5)
-    # Idea for how to create the pos_list comes from:
+    # Idea for how to create the pos_list and how to use it comes from:
     # https://stackoverflow.com/questions/56324522/program-in-python-to-show-letters-guessed-in-a-hangman-game-not-working
     pos_list = new_list
     for char in word:
         print(f"\nCongratulations! {i} is in the word!\n")
-        position = word.find(i)
-        pos_list[position] = i
+        positions = [m.start() for m in re.finditer(i, word)]
+        for pos in positions:
+                pos_list[pos] = i
         print (' '.join(pos_list), "\n")
         if "_" not in pos_list:
             # make name come in for better UX
@@ -130,7 +130,6 @@ def print_correct(i,word, new_list):
             restart_question()
         else:
             return pos_list
-
     
 def run_game(word): # add name to variables later, so print massage can be 
                     # customized
