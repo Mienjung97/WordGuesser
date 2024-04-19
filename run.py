@@ -131,14 +131,6 @@ def print_correct(i,word, new_list):
         else:
             return pos_list
 
-# def guess(x, word):
-#     letter = x
-#     if letter in word:
-#         print ("Correct!")
-#         letterPlace = [m.start() for m in re.finditer(letter, word)]
-#         for index in letterPlace:
-#             answer[index] = letter
-#     print(letterPlace)
     
 def run_game(word): # add name to variables later, so print massage can be 
                     # customized
@@ -161,7 +153,6 @@ def run_game(word): # add name to variables later, so print massage can be
         while True:
             if x in current_word:
                 print_correct(x, word, pos_list)
-                # guess(x, word) 
                 print(f"You still have {tries} tries left.\n")
                 break
             elif x not in current_word:
