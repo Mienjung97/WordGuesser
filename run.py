@@ -179,4 +179,5 @@ def main():
     word = get_word()
     run_game(word)
 
-main()
+if __name__ == "__main__":
+    main()
