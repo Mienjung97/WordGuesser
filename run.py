@@ -99,13 +99,13 @@ def guessed_letter_check():
     the alphabet and no letters or signs.
     """
 
-    i = input("\nTake your guess: \n")
+    i = input("\nTake your guess: \n").lower()
     if len(i) == 1:
         if i.isalpha():
             if i in guessed_letters:
+                # should I print the guessed letters all the time or just if duplicate comes up?
                 print(f"The letter {i} already has been guessed by you.")
-                print("All the letters you have guessed so far are:")
-                print (' '.join(guessed_letters), "\n")
+                
                 print("Please try again!")
                 return guessed_letter_check()
             else:
@@ -193,10 +193,14 @@ def animation(word, letter_list, tries):
     missing_letter = letter_list.count("_")-1
     while missing_letter > -1:
         pause(0.5)
-        print("Your race progress:")
+        print("Your race progress:\n")
         print("\U0001F3C1", "_ "*missing_letter, "\U0001f697")
         while tries > 0:
             print("Your fuel guage: ","\u2588 "*tries, "\n")
+            pause(0.5)
+            print("All the letters you have guessed so far are:")
+            print (' '.join(guessed_letters), "\n")
+            print("_"*56)
             pause(0.5)
             break
         break
