@@ -3,6 +3,8 @@ import time
 import re
 from words import word_list
 
+guessed_letters = []
+
 def pause(u):
     """
     Function to delay print statements adn takes a float as delay
@@ -62,25 +64,28 @@ def get_word():
     word = random.choice(word_list)
     return word.lower()
         
-def restart_question():
+def restart_question(name):
     """
     This function will ask the user if they would like to restart the game
     or exit the program. Error handleing for wrong input is included, as well
     as clearing the list of duplicate inputs.
     """
-    y = input("Would you like to restart the game? (Y/N)\n")
+    y = input(f"{name}, would you like to restart the game? (Y/N)\n")
     if y.lower() == "y":
+        # game_counter += 1 -> I wanted to include a game counter, but it always just counts to 2
+        # I tried global, inside and outside of the if statement
         print("\n")
         print("-"*56, "\n")
+        print(f"{name}, this is your x game! Have fun!") #{game_counter}
         guessed_letters.clear()
         new_word = get_word()
-        run_game(new_word)
+        run_game(new_word, name)
     elif y.lower() == "n":
-        print("Thanks for playing the game!")
+        print(f"Thank you for playing the game, {name}!")
         exit()
     else:
         print("Please enter a valid input.")
-        return restart_question()
+        return restart_question(name)
 
 def guessed_letter_check():
     """
@@ -108,7 +113,7 @@ def guessed_letter_check():
         print("Please enter only one letter.")
         return guessed_letter_check()
         
-def print_correct(i,word, new_list):
+def print_correct(i,word, new_list, tries, name):
     """
     Gets the correct letter passed by "run_game", searches for its 
     position in the word to guess and prints it accordingly to the 
@@ -124,14 +129,13 @@ def print_correct(i,word, new_list):
         for pos in positions:
                 pos_list[pos] = i
         print (' '.join(pos_list), "\n")
+        animation(word, pos_list, tries)
         if "_" not in pos_list:
-            # make name come in for better UX
-            print("Concratulations, you won!\n")
-            restart_question()
+            restart_question(name)
         else:
             return pos_list
     
-def run_game(word): # add name to variables later, so print massage can be 
+def run_game(word, name): # add name to variables later, so print massage can be 
                     # customized
     """
     Function that runs the main game: It calls functions to check the user input and
@@ -146,38 +150,56 @@ def run_game(word): # add name to variables later, so print massage can be
     pos_list = ['_' for x in range(len(word))]
     print(word)
     print(f"\nThe word has {len(word)} letters:\n")
-    print("_ "*len(word))
+    print("_ "*len(word), "\n")
+    print("You are at the start of your race! Try to get to the finish line!")
+    animation(word, pos_list, tries)
     while tries > 0:
         x = guessed_letter_check()
         while True:
             if x in current_word:
-                print_correct(x, word, pos_list)
-                print(f"You still have {tries} tries left.\n")
+                print_correct(x, word, pos_list, tries, name)
                 break
             elif x not in current_word:
                 print(f"\nSorry, {x} is not part of the word.")
                 print(f"Your current progress is:")
                 print (' '.join(pos_list), "\n")
                 tries -= 1
-                print(f"You have {tries} tries left.\n")
+                animation(word, pos_list, tries)
                 break
             elif ValueError:
                 break
     else:
-        print("You are out of tries and lost!")
-        print(f"the word you were trying to guess was {word}\n")
-        restart_question()
+        print("\nYou are out of fuel and lost!\n")
+        print(f"The word you were trying to guess was {word}\n")
+        restart_question(name)
 
-guessed_letters = []
+
+def animation(word, letter_list, tries):
+    """
+    This function prints out a "car race" where the amount of correctly 
+    guessed letters will reduce the distance between car and finish,
+    """
+    missing_letter = letter_list.count("_")-1
+    while missing_letter > -1:
+        print("Your race progress:")
+        print("\u0126", "_ "*missing_letter, "\U0001F697")
+        while tries > 0:
+            print("Your fuel guage: ","\u2588 "*tries, "\n")
+            break
+        break
+    else:
+        print("\U0001F697", "\u0126", "_\n")
+        print("Congratulations! You won the race!\n")
+        
 
 def main():
     """
     Main function that calls every function that is needed for the game.
     """
-    #log_in()
+    name = log_in()
     #print_rules()
     word = get_word()
-    run_game(word)
+    run_game(word, name)
 
 if __name__ == "__main__":
     main()
