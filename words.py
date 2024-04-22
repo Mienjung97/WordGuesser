@@ -133,3 +133,5 @@ word_list = [
     "icecream", 
     "candy"
 ]
+
+MAX_TRIES = 6
