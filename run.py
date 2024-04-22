@@ -33,12 +33,14 @@ def log_in():
     pause(1)
     return name
 
-def print_rules():
+def print_rules(name):
     """
     Function that prints the rules and game explanation.
     """
     print("-"*56, "\n")
-    print("WordGuesser is a game like Hangman, just less cruel.\n")
+    print("WordGuesser is a game like Hangman, just less cruel:")
+    print("Instead of hanging a man, you will race against the fuel")
+    print("in your racear to try and finish the race.\n")
     pause(2)
     print("The game works as following:\n")
     pause(0.5)
@@ -48,11 +50,14 @@ def print_rules():
     print("   that you think is contained in the word.\n")
     pause(0.5)
     print("3. If the letter you provided is contained in the word,")
-    print("   the game is going to show you in which position it is.")
+    print("   the game is going to show you in which position it is")
+    print("   and your racecar moves forward.")
     print("   If the word does not contain the letter, your try ")
-    print("   counts as a fail.\n")
+    print("   counts as a fail and reduces the fuel that you have left.\n")
     pause(0.5)
-    print("6. You only have 6 tries, or you loose the game.\n")
+    print("4. You only have 6 tries, or you loose the game.\n")
+    pause(0.5)
+    print(f"5. Have fun, {name}, and try to win as many races as possible!")
     print("-"*56, "\n")
     pause(1)
 
@@ -124,11 +129,13 @@ def print_correct(i,word, new_list, tries, name):
     # https://stackoverflow.com/questions/56324522/program-in-python-to-show-letters-guessed-in-a-hangman-game-not-working
     pos_list = new_list
     for char in word:
+        pause(0.5)
         print(f"\nCongratulations! {i} is in the word!\n")
         positions = [m.start() for m in re.finditer(i, word)]
         for pos in positions:
                 pos_list[pos] = i
         print (' '.join(pos_list), "\n")
+        pause(0.5)
         animation(word, pos_list, tries)
         if "_" not in pos_list:
             restart_question(name)
@@ -151,6 +158,7 @@ def run_game(word, name): # add name to variables later, so print massage can be
     print(word)
     print(f"\nThe word has {len(word)} letters:\n")
     print("_ "*len(word), "\n")
+    pause(1)
     print("You are at the start of your race! Try to get to the finish line!")
     animation(word, pos_list, tries)
     while tries > 0:
@@ -161,6 +169,7 @@ def run_game(word, name): # add name to variables later, so print massage can be
                 break
             elif x not in current_word:
                 print(f"\nSorry, {x} is not part of the word.")
+                pause(1)
                 print(f"Your current progress is:")
                 print (' '.join(pos_list), "\n")
                 tries -= 1
@@ -170,7 +179,9 @@ def run_game(word, name): # add name to variables later, so print massage can be
                 break
     else:
         print("\nYou are out of fuel and lost!\n")
+        pause(1)
         print(f"The word you were trying to guess was {word}\n")
+        pause(1)
         restart_question(name)
 
 
@@ -181,14 +192,18 @@ def animation(word, letter_list, tries):
     """
     missing_letter = letter_list.count("_")-1
     while missing_letter > -1:
+        pause(0.5)
         print("Your race progress:")
-        print("\u0126", "_ "*missing_letter, "\U0001F697")
+        print("\U0001F3C1", "_ "*missing_letter, "\U0001f697")
         while tries > 0:
             print("Your fuel guage: ","\u2588 "*tries, "\n")
+            pause(0.5)
             break
         break
     else:
+        pause(0.5)
         print("\U0001F697", "\u0126", "_\n")
+        pause(0.5)
         print("Congratulations! You won the race!\n")
         
 
@@ -197,7 +212,7 @@ def main():
     Main function that calls every function that is needed for the game.
     """
     name = log_in()
-    #print_rules()
+    #print_rules(name)
     word = get_word()
     run_game(word, name)
 
