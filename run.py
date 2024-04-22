@@ -61,6 +61,8 @@ def print_rules(name):
     print(f"6. Have fun, {name}, and try to win as many races as possible!\n")
     print("-"*65, "\n")
     pause(1)
+    input("Press the Enter key to start!")
+    print("\n")
 
 def get_word():
     """
@@ -189,16 +191,21 @@ def animation(word, letter_list, tries):
     This function prints out a "car race" where the amount of correctly 
     guessed letters will reduce the distance between car and finish,
     """
+    start = len(guessed_letters)
     missing_letter = letter_list.count("_")-1
     while missing_letter > -1:
         pause(0.5)
-        print("Your race progress:\n")
+        if start != 0:
+            print("Your race progress:\n")
+        elif start == 0:
+            print(" ")
         print("\U0001F3C1", "_ "*missing_letter, "\U0001f697")
         while tries > 0:
             print("Your fuel guage: ","\u2588 "*tries, "\n")
             pause(0.5)
-            print("All the letters you have guessed so far are:")
-            print (' '.join(guessed_letters), "\n")
+            if start != 0:
+                print("All the letters you have guessed so far are:")
+                print (' '.join(guessed_letters), "\n")
             print("_"*65)
             pause(0.5)
             break
@@ -208,6 +215,7 @@ def animation(word, letter_list, tries):
         print("\U0001F697", "\u0126", "_\n")
         pause(0.5)
         print("Congratulations! You won the race!\n")
+        pause(1)
         
 
 def main():
@@ -215,7 +223,7 @@ def main():
     Main function that calls every function that is needed for the game.
     """
     name = log_in()
-    print_rules(name)
+    #print_rules(name)
     word = get_word()
     run_game(word, name)
 
