@@ -4,6 +4,8 @@ import re
 from words import word_list
 
 guessed_letters = []
+def print_line():
+    print("_"*65, "\n")
 
 def pause(u):
     """
@@ -37,7 +39,7 @@ def print_rules(name):
     """
     Function that prints the rules and game explanation.
     """
-    print("-"*65, "\n")
+    print_line()
     print("WordGuesser is a game like Hangman, just less cruel:")
     print("Instead of hanging a man, you will race against the fuel")
     print("in your racear to try and finish the race.\n")
@@ -59,7 +61,7 @@ def print_rules(name):
     print("5. You only have 6 tries, or you loose the game.\n")
     pause(0.5)
     print(f"6. Have fun, {name}, and try to win as many races as possible!\n")
-    print("-"*65, "\n")
+    print_line()
     pause(1)
     input("Press the Enter key to start!")
     print("\n")
@@ -83,16 +85,18 @@ def restart_question(name):
         # game_counter += 1 -> I wanted to include a game counter, but it always just counts to 2
         # I tried global, inside and outside of the if statement
         print("\n")
-        print("-"*65, "\n")
+        print_line()
         print(f"{name}, this is your x game! Have fun!") #{game_counter}
         guessed_letters.clear()
         new_word = get_word()
         run_game(new_word, name)
     elif y.lower() == "n":
         print(f"Thank you for playing the game, {name}!")
+        print_line()
         exit()
     else:
         print("Please enter a valid input.")
+        print_line()
         return restart_question(name)
 
 def guessed_letter_check():
@@ -113,10 +117,12 @@ def guessed_letter_check():
                 guessed_letters.append(i)
                 return i
         else:
-            print("Please enter only letters, no numbers.")
+            print("Please enter only letters, no numbers.\n")
+            print_line()
             return guessed_letter_check()
     elif len(i) != 1:
-        print("Please enter only one letter.")
+        print("Please enter only one letter.\n")
+        print_line()
         return guessed_letter_check()
         
 def print_correct(i,word, new_list, tries, name):
@@ -212,7 +218,7 @@ def animation(word, letter_list, tries):
         break
     else:
         pause(0.5)
-        print("\U0001F697", "\u0126", "_\n")
+        print("\U0001F697", "\U0001F3C1", "_\n")
         pause(0.5)
         print("Congratulations! You won the race!\n")
         pause(1)
@@ -223,7 +229,7 @@ def main():
     Main function that calls every function that is needed for the game.
     """
     name = log_in()
-    #print_rules(name)
+    print_rules(name)
     word = get_word()
     run_game(word, name)
 
