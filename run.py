@@ -37,7 +37,7 @@ def print_rules(name):
     """
     Function that prints the rules and game explanation.
     """
-    print("-"*56, "\n")
+    print("-"*65, "\n")
     print("WordGuesser is a game like Hangman, just less cruel:")
     print("Instead of hanging a man, you will race against the fuel")
     print("in your racear to try and finish the race.\n")
@@ -51,14 +51,15 @@ def print_rules(name):
     pause(0.5)
     print("3. If the letter you provided is contained in the word,")
     print("   the game is going to show you in which position it is")
-    print("   and your racecar moves forward.")
-    print("   If the word does not contain the letter, your try ")
+    print("   and your racecar moves forward.\n")
+    pause(0.5)
+    print("4. If the word does not contain the letter, your try ")
     print("   counts as a fail and reduces the fuel that you have left.\n")
     pause(0.5)
-    print("4. You only have 6 tries, or you loose the game.\n")
+    print("5. You only have 6 tries, or you loose the game.\n")
     pause(0.5)
-    print(f"5. Have fun, {name}, and try to win as many races as possible!")
-    print("-"*56, "\n")
+    print(f"6. Have fun, {name}, and try to win as many races as possible!\n")
+    print("-"*65, "\n")
     pause(1)
 
 def get_word():
@@ -80,7 +81,7 @@ def restart_question(name):
         # game_counter += 1 -> I wanted to include a game counter, but it always just counts to 2
         # I tried global, inside and outside of the if statement
         print("\n")
-        print("-"*56, "\n")
+        print("-"*65, "\n")
         print(f"{name}, this is your x game! Have fun!") #{game_counter}
         guessed_letters.clear()
         new_word = get_word()
@@ -103,9 +104,7 @@ def guessed_letter_check():
     if len(i) == 1:
         if i.isalpha():
             if i in guessed_letters:
-                # should I print the guessed letters all the time or just if duplicate comes up?
                 print(f"The letter {i} already has been guessed by you.")
-                
                 print("Please try again!")
                 return guessed_letter_check()
             else:
@@ -142,8 +141,7 @@ def print_correct(i,word, new_list, tries, name):
         else:
             return pos_list
     
-def run_game(word, name): # add name to variables later, so print massage can be 
-                    # customized
+def run_game(word, name):
     """
     Function that runs the main game: It calls functions to check the user input and
     compares it to the word in question.
@@ -159,7 +157,8 @@ def run_game(word, name): # add name to variables later, so print massage can be
     print(f"\nThe word has {len(word)} letters:\n")
     print("_ "*len(word), "\n")
     pause(1)
-    print("You are at the start of your race! Try to get to the finish line!")
+    print("You are at the start of your race,")
+    print("try to get to the finish line!")
     animation(word, pos_list, tries)
     while tries > 0:
         x = guessed_letter_check()
@@ -200,7 +199,7 @@ def animation(word, letter_list, tries):
             pause(0.5)
             print("All the letters you have guessed so far are:")
             print (' '.join(guessed_letters), "\n")
-            print("_"*56)
+            print("_"*65)
             pause(0.5)
             break
         break
@@ -216,7 +215,7 @@ def main():
     Main function that calls every function that is needed for the game.
     """
     name = log_in()
-    #print_rules(name)
+    print_rules(name)
     word = get_word()
     run_game(word, name)
 
