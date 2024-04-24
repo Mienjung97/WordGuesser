@@ -134,7 +134,10 @@ def print_rules(name):
     print("Instead of hanging a man, you will race against the fuel")
     paused_print_2("in your racear to try and finish the race.\n")
     paused_print_05("The game works as following:\n")
-    paused_print_05("1. You need to try and guess the word, letter by letter.\n")
+    print("1. You need to try and guess a car brand, letter by letter.")
+    print('   Brands that contain two words like "Range Rover" will be')
+    print("   written in lowercase and without whitespaces or dashes:")
+    paused_print_05('   "rangerover"\n')
     print("2. With each try, you will put in a single letter ")
     paused_print_05("   that you think is contained in the word.\n")
     print("3. If the letter you provided is contained in the word,")
@@ -173,6 +176,7 @@ def restart_question(name):
         new_word = get_word()
         run_game(new_word, name)
     elif y.lower() == "n":
+        pause(0.5)
         print(f"\nThank you for playing the game, {name}!")
         print_line()
         exit()
@@ -248,7 +252,8 @@ def run_game(word, name):
     tries = MAX_TRIES
     current_word = word
     pos_list = ['_' for x in range(len(word))]
-    print(word)
+    # Following function can be enabled for testing purposes:
+    # print(word)
     print(f"\nThe word has {len(word)} letters:\n")
     paused_print_1("_ "*len(word))
     print("\nYou are at the start of your race,")
