@@ -146,7 +146,7 @@ def print_rules(name):
     print(f"6. Have fun, {name}, and try to win as many races as possible!\n")
     print_line()
     pause(1)
-    input("Press the Enter key to start!")
+    input("Press the Enter key to start!\n")
 
 def get_word():
     """
