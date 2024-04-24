@@ -69,7 +69,7 @@ __  __              /____/
 
 def print_line():
     """
-    Add 65 dashes to form a line
+    Add 79 dashes to form a line
     """
     print("_"*79, "\n")
 
@@ -147,7 +147,6 @@ def print_rules(name):
     print_line()
     pause(1)
     input("Press the Enter key to start!")
-    print("\n")
 
 def get_word():
     """
@@ -169,7 +168,7 @@ def restart_question(name):
         game_counter += 1
         print("\n")
         print_line()
-        print(f"{name}, this is your Game no. {game_counter}! Have fun!") #{game_counter}
+        print(f"{name}, this is your Game no. {game_counter}! Have fun!")
         guessed_letters.clear()
         new_word = get_word()
         run_game(new_word, name)
@@ -186,9 +185,9 @@ def guessed_letter_check():
     """
     This function asks the user for the input and only returns it to the 
     "run_game" function after validating that it is only a single letter from
-    the alphabet and no letters or signs.
+    the alphabet and no letters or signs. Letters will always be converted
+    into lower case for validation.
     """
-
     i = input("\nTake your guess: \n").lower()
     if len(i) == 1:
         if i.isalpha():
@@ -221,9 +220,11 @@ def print_correct(i,word, new_list, tries, name):
     for char in word:
         pause(0.5)
         print(f"\nCongratulations! {i} is in the word!\n")
+        # Regular expressions (re) are used to find double occuring letters.
         positions = [m.start() for m in re.finditer(i, word)]
         for pos in positions:
                 pos_list[pos] = i
+        # Following statement will print the word including "_" for unguessed letters.
         paused_print_05(' '.join(pos_list))
         animation(word, pos_list, tries)
         if "_" not in pos_list:
@@ -235,8 +236,11 @@ def run_game(word, name):
     """
     Function that runs the main game: It calls functions to check the user input and
     compares it to the word in question.
-    If the letter is in the word, the game progresses (more needs to be implemented)
-    If the letter is not in the word, the try counter will be decreased.
+    The game passes the guess into the "guessed_letter_check" function which will return 
+    the letter if it was a valid input.
+    If the guess was correct, the "print_correct" function is called.
+    If the letter is not in the word, the try counter will be decreased and the fail will
+    be passed into the "animation" function to reduce the "fuel" (trys).
     If all tries are used up, the player can choose to either start a new game
     or quit
     """
@@ -274,7 +278,9 @@ def run_game(word, name):
 def animation(word, letter_list, tries):
     """
     This function prints out a "car race" where the amount of correctly 
-    guessed letters will reduce the distance between car and finish,
+    guessed letters will reduce the distance between car and finish.
+    It also prints out the remaining trys in form of "fuel bars" as well
+    as all the previously guessed letters.
     """
     start = len(guessed_letters)
     missing_letter = letter_list.count("_")-1
@@ -284,6 +290,7 @@ def animation(word, letter_list, tries):
             print("\nYour race progress:")
         elif start == 0:
             print(" ")
+        # The unicode numbers represent "Finish flag", "red car" and the "fuel bars".
         print("\U0001F3C1", "_ "*missing_letter, "\U0001f697")
         while tries > 0:
             print("Your fuel guage: ","\u2588 "*tries)
@@ -295,6 +302,7 @@ def animation(word, letter_list, tries):
             break
         break
     else:
+        # This is the output for winning the "race".
         paused_print_05("\n")
         print("\U0001F697", "\U0001F3C1", "_\n")
         print_ascii(2)
