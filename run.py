@@ -6,11 +6,72 @@ from words import word_list, MAX_TRIES
 guessed_letters = []
 game_counter = 1
 
+
+def print_ascii(i):
+    """
+    This function is used to print different ASCII arts. (Function cannot 
+    be collapsed because indentation will move the )
+    """
+    if i == 0:
+        print(r"""   
+ _       __                  __ ______                                    
+| |     / /____   _____ ____/ // ____/__  __ ___   _____ _____ ___   _____
+| | /| / // __ \ / ___// __  // / __ / / / // _ \ / ___// ___// _ \ / ___/
+| |/ |/ // /_/ // /   / /_/ // /_/ // /_/ //  __/(__  )(__  )/  __// /    
+|__/|__/ \____//_/    \__,_/ \____/ \__,_/ \___//____//____/ \___//_/     
+                                                                                                                                                
+        """)
+    elif i == 1:
+        paused_print_1(r"""
+    
+   ___                    __          __   __         ___ _        _       __ 
+  / _ \ ___ _ ____ ___   / /_ ___    / /_ / /  ___   / _/(_)___   (_)___  / / 
+ / , _// _ `// __// -_) / __// _ \  / __// _ \/ -_) / _// // _ \ / /(_-< / _ \
+/_/|_| \_,_/ \__/ \__/  \__/ \___/  \__//_//_/\__/ /_/ /_//_//_//_//___//_//_/
+   __        ___                                         ___            __    
+  / /  ___  / _/___   ____ ___   __ __ ___  __ __ ____  / _/__ __ ___  / /    
+ / _ \/ -_)/ _// _ \ / __// -_) / // // _ \/ // // __/ / _// // // -_)/ /     
+/_.__/\__//_/  \___//_/   \__/  \_, / \___/\_,_//_/   /_/  \_,_/ \__//_/      
+                               /___/ __   __                                  
+  ____ __ __ ___   ___   ___  __ __ / /_ / /                                  
+ / __// // // _ \ (_-<  / _ \/ // // __//_/                                   
+/_/   \_,_//_//_//___/  \___/\_,_/ \__/(_)                                    
+                                                                              
+    """)
+    elif i == 2:
+        print(r"""
+   ______                                   __         __
+  / ____/____   ____   ____ _ _____ ____ _ / /_ _____ / /
+ / /    / __ \ / __ \ / __ `// ___// __ `// __// ___// / 
+/ /___ / /_/ // / / // /_/ // /   / /_/ // /_ (__  )/_/  
+\____/ \____//_/ /_/ \__, //_/    \__,_/ \__//____/(_)   
+__  __              /____/                               
+\ \/ /____   __  __   _      __ ____   ____              
+ \  // __ \ / / / /  | | /| / // __ \ / __ \             
+ / // /_/ // /_/ /   | |/ |/ // /_/ // / / /             
+/_/ \____/ \__,_/    |__/|__/ \____//_/ /_/              
+   __   __                                      __       
+  / /_ / /_   ___     _____ ____ _ _____ ___   / /       
+ / __// __ \ / _ \   / ___// __ `// ___// _ \ / /        
+/ /_ / / / //  __/  / /   / /_/ // /__ /  __//_/         
+\__//_/ /_/ \___/  /_/    \__,_/ \___/ \___/(_)          
+                                                                                                                                                       
+""")
+    elif i == 3:
+        print(r"""
+    ______                   __            __                 __    __
+   / ____/____ ___   ____   / /_ __  __   / /_ ____ _ ____   / /__ / /
+  / __/  / __ `__ \ / __ \ / __// / / /  / __// __ `// __ \ / //_// / 
+ / /___ / / / / / // /_/ // /_ / /_/ /  / /_ / /_/ // / / // ,<  /_/  
+/_____//_/ /_/ /_// .___/ \__/ \__, /   \__/ \__,_//_/ /_//_/|_|(_)   
+                 /_/          /____/                                  
+        """)
+
 def print_line():
     """
     Add 65 dashes to form a line
     """
-    print("_"*65, "\n")
+    print("_"*79, "\n")
 
 def pause(u):
     """
@@ -50,7 +111,11 @@ def take_user_name_input():
     """
     name = input("\nPlease enter your name: \n")
     while len(name) <= 23:
-        break
+        if len(name) > 0:
+            break
+        else:
+            print("You must enter a name.")
+            return take_user_name_input()
     else:
         print("\nYour name is too long for this program.")
         print("Please make it shorter.\n")
@@ -109,7 +174,7 @@ def restart_question(name):
         new_word = get_word()
         run_game(new_word, name)
     elif y.lower() == "n":
-        print(f"Thank you for playing the game, {name}!")
+        print(f"\nThank you for playing the game, {name}!")
         print_line()
         exit()
     else:
@@ -175,13 +240,14 @@ def run_game(word, name):
     If all tries are used up, the player can choose to either start a new game
     or quit
     """
+    print_ascii(1)
     tries = MAX_TRIES
     current_word = word
     pos_list = ['_' for x in range(len(word))]
     print(word)
     print(f"\nThe word has {len(word)} letters:\n")
     paused_print_1("_ "*len(word))
-    print("You are at the start of your race,")
+    print("\nYou are at the start of your race,")
     print("try to get to the finish line!")
     animation(word, pos_list, tries)
     while tries > 0:
@@ -191,7 +257,7 @@ def run_game(word, name):
                 print_correct(x, word, pos_list, tries, name)
                 break
             elif x not in current_word:
-                paused_print_1(f"\nSorry, {x} is not part of the word.")
+                paused_print_1(f"\nSorry, {x} is not part of the word.\n")
                 print(f"Your current progress is:")
                 print (' '.join(pos_list), "\n")
                 tries -= 1
@@ -200,8 +266,9 @@ def run_game(word, name):
             elif ValueError:
                 break
     else:
+        print_ascii(3)
         paused_print_1("\nYou are out of fuel and lost!\n")
-        paused_print_1(f"The word you were trying to guess was {word}\n")
+        paused_print_1(f'The word you were trying to guess was "{word}"\n')
         restart_question(name)
 
 def animation(word, letter_list, tries):
@@ -214,22 +281,24 @@ def animation(word, letter_list, tries):
     while missing_letter > -1:
         pause(0.5)
         if start != 0:
-            print("Your race progress:\n")
+            print("\nYour race progress:")
         elif start == 0:
             print(" ")
         print("\U0001F3C1", "_ "*missing_letter, "\U0001f697")
         while tries > 0:
             print("Your fuel guage: ","\u2588 "*tries)
             if start != 0:
-                print("All the letters you have guessed so far are:")
+                pause(1)
+                print("\nAll the letters you have guessed so far are:")
                 print (' '.join(guessed_letters), "\n")
-            paused_print_05("_" * 65)
+            paused_print_05("_" * 79)
             break
         break
     else:
         paused_print_05("\n")
         print("\U0001F697", "\U0001F3C1", "_\n")
-        paused_print_1("Congratulations! You won the race!\n")
+        print_ascii(2)
+        pause(1)
         
 def main():
     """
@@ -237,6 +306,7 @@ def main():
     """
     global game_counter
     game_counter = 1
+    print_ascii(0)
     name = take_user_name_input()
     print_rules(name)
     word = get_word()
