@@ -67,7 +67,7 @@ def print_rules(name):
     print_line()
     print("WordGuesser is a game like Hangman, just less cruel:")
     print("Instead of hanging a man, you will race against the fuel")
-    paused_print_2()"in your racear to try and finish the race.\n")
+    paused_print_2("in your racear to try and finish the race.\n")
     paused_print_05("The game works as following:\n")
     paused_print_05("1. You need to try and guess the word, letter by letter.\n")
     print("2. With each try, you will put in a single letter ")
@@ -159,13 +159,12 @@ def print_correct(i,word, new_list, tries, name):
         positions = [m.start() for m in re.finditer(i, word)]
         for pos in positions:
                 pos_list[pos] = i
-        paused_print_05(' '.join(pos_list), "\n")
+        paused_print_05(' '.join(pos_list))
         animation(word, pos_list, tries)
         if "_" not in pos_list:
             restart_question(name)
         else:
             return pos_list
-
 
 def run_game(word, name):
     """
@@ -181,7 +180,7 @@ def run_game(word, name):
     pos_list = ['_' for x in range(len(word))]
     print(word)
     print(f"\nThe word has {len(word)} letters:\n")
-    paused_print_1("_ "*len(word), "\n")
+    paused_print_1("_ "*len(word))
     print("You are at the start of your race,")
     print("try to get to the finish line!")
     animation(word, pos_list, tries)
@@ -220,7 +219,7 @@ def animation(word, letter_list, tries):
             print(" ")
         print("\U0001F3C1", "_ "*missing_letter, "\U0001f697")
         while tries > 0:
-            paused_print_05("Your fuel guage: ","\u2588 "*tries, "\n")
+            print("Your fuel guage: ","\u2588 "*tries)
             if start != 0:
                 print("All the letters you have guessed so far are:")
                 print (' '.join(guessed_letters), "\n")
@@ -228,8 +227,8 @@ def animation(word, letter_list, tries):
             break
         break
     else:
-        pause(0.5)
-        paused_print_05("\U0001F697", "\U0001F3C1", "_\n")
+        paused_print_05("\n")
+        print("\U0001F697", "\U0001F3C1", "_\n")
         paused_print_1("Congratulations! You won the race!\n")
         
 def main():
@@ -242,7 +241,6 @@ def main():
     print_rules(name)
     word = get_word()
     run_game(word, name)
-
 
 if __name__ == "__main__":
     main()
