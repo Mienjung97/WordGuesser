@@ -1,7 +1,9 @@
 import time
+import os
 
 # This file contains short functions that improve the game experience
 
+MAX_TRIES = 6
 
 def print_line():
     """
@@ -40,3 +42,7 @@ def paused_print_2(print_txt):
     """
     print(print_txt)
     pause(2)
+
+# https://stackoverflow.com/questions/517970/how-can-i-clear-the-interpreter-console
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')

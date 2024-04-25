@@ -52,5 +52,3 @@ word_list = [
     "Volvo"
 ]
 
-
-MAX_TRIES = 6

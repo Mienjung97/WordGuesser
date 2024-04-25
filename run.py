@@ -1,6 +1,7 @@
 import random
 import re
-from words import word_list, MAX_TRIES
+import os
+from words import word_list
 from art import print_ascii
 from helper import (
     print_line,
@@ -8,6 +9,8 @@ from helper import (
     paused_print_05,
     paused_print_1,
     paused_print_2,
+    MAX_TRIES,
+    cls,
 )
 
 guessed_letters = []
@@ -36,6 +39,8 @@ def take_user_name_input():
 
     print("-" * 23)
     paused_print_1(f"\nHello {name} and welcome to WordGuesser\n")
+    pause(4)
+    cls()
     return name
 
 
@@ -64,8 +69,9 @@ def print_rules(name):
     paused_print_05("5. You only have 6 tries, or you loose the game.\n")
     print(f"6. Have fun, {name}, and try to win as many races as possible!\n")
     print_line()
-    pause(1)
+    pause(5)
     input("Press the Enter key to start!\n")
+    cls()
 
 
 def get_word():
@@ -86,6 +92,7 @@ def restart_question(name):
     global game_counter
     y = input(f"{name}, would you like to restart the game? (Y/N)\n")
     if y.lower() == "y":
+        cls()
         game_counter += 1
         print("\n")
         print_line()
@@ -94,6 +101,7 @@ def restart_question(name):
         new_word = get_word()
         run_game(new_word, name)
     elif y.lower() == "n":
+        cls()
         pause(0.5)
         print(f"\nThank you for playing the game, {name}!")
         print_line()
@@ -120,6 +128,7 @@ def guessed_letter_check():
                 return guessed_letter_check()
             else:
                 guessed_letters.append(i)
+                cls()
                 return i
         else:
             print("Please enter only letters, no numbers.\n")
@@ -165,13 +174,14 @@ def run_game(word, name):
     will return the letter if it was a valid input.
     If the guess was correct, the "print_correct" function is called.
     If the letter is not in the word, the try counter will be decreased and
-    the fail will be passed into the "animation" function to reduce the 
+    the fail will be passed into the "animation" function to reduce the
     "fuel" (trys).
-    If all tries are used up, the player can choose to either start a new 
+    If all tries are used up, the player can choose to either start a new
     game or quit
     """
     print_ascii(1)
-    pause(1)
+    pause(5)
+    cls()
     tries = MAX_TRIES
     current_word = word
     pos_list = ["_" for x in range(len(word))]
@@ -219,7 +229,7 @@ def animation(word, letter_list, tries):
             print("\nYour race progress:")
         elif start == 0:
             print(" ")
-        # The unicode numbers represent "Finish flag", "red car" 
+        # The unicode numbers represent "Finish flag", "red car"
         # and the "fuel bars".
         print("\U0001F3C1", "_ " * missing_letter, "\U0001f697")
         while tries > 0:
