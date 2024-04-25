@@ -157,7 +157,8 @@ def print_correct(i, word, new_list, tries, name):
         positions = [m.start() for m in re.finditer(i, word)]
         for pos in positions:
             pos_list[pos] = i
-        # Following statement will print the word including "_" for unguessed letters.
+        # Following statement will print the word including "_" for
+        # unguessed letters.
         paused_print_05(" ".join(pos_list))
         animation(word, pos_list, tries)
         if "_" not in pos_list:

@@ -49,6 +49,5 @@ word_list = [
     "Tesla",
     "Toyota",
     "Volkswagen",
-    "Volvo"
+    "Volvo",
 ]
-
