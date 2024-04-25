@@ -1,13 +1,17 @@
 import random
-
 import re
 from words import word_list, MAX_TRIES
 from art import print_ascii
-from helper import print_line, pause, paused_print_05, paused_print_1, paused_print_2
+from helper import (
+    print_line,
+    pause,
+    paused_print_05,
+    paused_print_1,
+    paused_print_2,
+)
 
 guessed_letters = []
 game_counter = 1
-
 
 
 def take_user_name_input():
@@ -29,10 +33,11 @@ def take_user_name_input():
         print("\nYour name is too long for this program.")
         print("Please make it shorter.\n")
         return take_user_name_input()
-            
-    print("-"*23)
+
+    print("-" * 23)
     paused_print_1(f"\nHello {name} and welcome to WordGuesser\n")
     return name
+
 
 def print_rules(name):
     """
@@ -53,12 +58,15 @@ def print_rules(name):
     print("   the game is going to show you in which position it is")
     paused_print_05("   and your racecar moves forward.\n")
     print("4. If the word does not contain the letter, your try ")
-    paused_print_05("   counts as a fail and reduces the fuel that you have left.\n")
+    paused_print_05(
+        "   counts as a fail and reduces the fuel that you have left.\n"
+    )
     paused_print_05("5. You only have 6 tries, or you loose the game.\n")
     print(f"6. Have fun, {name}, and try to win as many races as possible!\n")
     print_line()
     pause(1)
     input("Press the Enter key to start!\n")
+
 
 def get_word():
     """
@@ -67,7 +75,8 @@ def get_word():
     """
     word = random.choice(word_list)
     return word.lower()
-        
+
+
 def restart_question(name):
     """
     This function will ask the user if they would like to restart the game
@@ -94,9 +103,10 @@ def restart_question(name):
         print_line()
         return restart_question(name)
 
+
 def guessed_letter_check():
     """
-    This function asks the user for the input and only returns it to the 
+    This function asks the user for the input and only returns it to the
     "run_game" function after validating that it is only a single letter from
     the alphabet and no letters or signs. Letters will always be converted
     into lower case for validation.
@@ -119,11 +129,12 @@ def guessed_letter_check():
         print("Please enter only one letter.\n")
         print_line()
         return guessed_letter_check()
-        
-def print_correct(i,word, new_list, tries, name):
+
+
+def print_correct(i, word, new_list, tries, name):
     """
-    Gets the correct letter passed by "run_game", searches for its 
-    position in the word to guess and prints it accordingly to the 
+    Gets the correct letter passed by "run_game", searches for its
+    position in the word to guess and prints it accordingly to the
     console.
     """
     pause(0.5)
@@ -136,36 +147,38 @@ def print_correct(i,word, new_list, tries, name):
         # Regular expressions (re) are used to find double occuring letters.
         positions = [m.start() for m in re.finditer(i, word)]
         for pos in positions:
-                pos_list[pos] = i
+            pos_list[pos] = i
         # Following statement will print the word including "_" for unguessed letters.
-        paused_print_05(' '.join(pos_list))
+        paused_print_05(" ".join(pos_list))
         animation(word, pos_list, tries)
         if "_" not in pos_list:
             restart_question(name)
         else:
             return pos_list
 
+
 def run_game(word, name):
     """
-    Function that runs the main game: It calls functions to check the user input and
-    compares it to the word in question.
-    The game passes the guess into the "guessed_letter_check" function which will return 
-    the letter if it was a valid input.
+    Function that runs the main game: It calls functions to check the user
+    input and compares it to the word in question.
+    The game passes the guess into the "guessed_letter_check" function which
+    will return the letter if it was a valid input.
     If the guess was correct, the "print_correct" function is called.
-    If the letter is not in the word, the try counter will be decreased and the fail will
-    be passed into the "animation" function to reduce the "fuel" (trys).
-    If all tries are used up, the player can choose to either start a new game
-    or quit
+    If the letter is not in the word, the try counter will be decreased and
+    the fail will be passed into the "animation" function to reduce the 
+    "fuel" (trys).
+    If all tries are used up, the player can choose to either start a new 
+    game or quit
     """
     print_ascii(1)
     pause(1)
     tries = MAX_TRIES
     current_word = word
-    pos_list = ['_' for x in range(len(word))]
+    pos_list = ["_" for x in range(len(word))]
     # Following function can be enabled for testing purposes:
     # print(word)
     print(f"\nThe word has {len(word)} letters:\n")
-    paused_print_1("_ "*len(word))
+    paused_print_1("_ " * len(word))
     print("\nYou are at the start of your race,")
     print("try to get to the finish line!")
     animation(word, pos_list, tries)
@@ -178,7 +191,7 @@ def run_game(word, name):
             elif x not in current_word:
                 paused_print_1(f"\nSorry, {x} is not part of the word.\n")
                 print(f"Your current progress is:")
-                print (' '.join(pos_list), "\n")
+                print(" ".join(pos_list), "\n")
                 tries -= 1
                 animation(word, pos_list, tries)
                 break
@@ -190,29 +203,31 @@ def run_game(word, name):
         paused_print_1(f'The word you were trying to guess was "{word}"\n')
         restart_question(name)
 
+
 def animation(word, letter_list, tries):
     """
-    This function prints out a "car race" where the amount of correctly 
+    This function prints out a "car race" where the amount of correctly
     guessed letters will reduce the distance between car and finish.
     It also prints out the remaining trys in form of "fuel bars" as well
     as all the previously guessed letters.
     """
     start = len(guessed_letters)
-    missing_letter = letter_list.count("_")-1
+    missing_letter = letter_list.count("_") - 1
     while missing_letter > -1:
         pause(0.5)
         if start != 0:
             print("\nYour race progress:")
         elif start == 0:
             print(" ")
-        # The unicode numbers represent "Finish flag", "red car" and the "fuel bars".
-        print("\U0001F3C1", "_ "*missing_letter, "\U0001f697")
+        # The unicode numbers represent "Finish flag", "red car" 
+        # and the "fuel bars".
+        print("\U0001F3C1", "_ " * missing_letter, "\U0001f697")
         while tries > 0:
-            print("Your fuel guage: ","\u2588 "*tries)
+            print("Your fuel guage: ", "\u2588 " * tries)
             if start != 0:
                 pause(1)
                 print("\nAll the letters you have guessed so far are:")
-                print (' '.join(guessed_letters), "\n")
+                print(" ".join(guessed_letters), "\n")
             paused_print_05("_" * 79)
             break
         break
@@ -222,7 +237,8 @@ def animation(word, letter_list, tries):
         print("\U0001F697", "\U0001F3C1", "_\n")
         print_ascii(2)
         pause(1)
-        
+
+
 def main():
     """
     Main function that calls every function that is needed for the game.
@@ -234,6 +250,7 @@ def main():
     print_rules(name)
     word = get_word()
     run_game(word, name)
+
 
 if __name__ == "__main__":
     main()

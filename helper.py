@@ -2,11 +2,13 @@ import time
 
 # This file contains short functions that improve the game experience
 
+
 def print_line():
     """
     Add 79 dashes to form a line
     """
-    print("_"*79, "\n")
+    print("_" * 79, "\n")
+
 
 def pause(u):
     """
@@ -15,12 +17,14 @@ def pause(u):
     """
     time.sleep(u)
 
+
 def paused_print_05(print_txt):
     """
     Combines the pause (0.5s) and print functions for readability.
     """
     print(print_txt)
     pause(0.5)
+
 
 def paused_print_1(print_txt):
     """
