@@ -102,4 +102,33 @@ Besides the files and functions that I have created, the game also imports the f
 - random
 - re
 
-##
+## Testing
+
+I have manually tested the project and did not find any bugs:
+
+- Any invalid input has a validation function with corresponding messages to the user
+- Tested in GitPod and on the deployed Heroku app
+- Using the [PEP8](https://pep8ci.herokuapp.com/) linter from Code Institute, no errors were shown.
+
+### Bugs
+
+Solved Bugs
+
+- In the beginning, when I was creating the function that checks and prints, if the provided letter was part of the word, I was unable to get duplicate letters to show. As a solution I found that it was possible with the re (regular expressions) module.
+
+- I was unable to increment the game counter until my mentor Akshat Garg provided me with the solution: Use a global variable.
+
+- Not having limited the length of the lines to 79 characters gave me errors with linters. Using "Black Formatter" and setting the line length to 79, the files were structured better and said problem was solved.
+
+Unsolved Bugs
+
+- No bugs remaining
+
+### Validator Testing
+
+[PEP8](https://pep8ci.herokuapp.com/) from Code Institute:
+
+![main-validation](readme/linter_run.PNG)
+![words-validation](readme/linter_words.PNG)
+![helper-validation](readme/linter_helper.PNG)
+![ascii-validation](readme/ascii_validation.PNG)
