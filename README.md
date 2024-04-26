@@ -48,11 +48,14 @@ After the game is finished, either by winning or loosing, the user will be asked
 
 - After each guess, the terminal will be cleared and shows the user if the letter was correct or false, as well as every previously guessed letter, the race progress and the fuel guage.
 
-Wrong input:
+- Almost every print statement has an artificial pause between 0.5 and 5 seconds added.
+
+Wrong input
+(only 5 fuel bars remain in this picture):
 
 ![wrong](readme/wrong_letter.PNG)
 
-Correct input:
+Correct input (the car gets a bit closer to the finish):
 
 ![corret](readme/correct_msg.PNG)
 
@@ -61,3 +64,25 @@ Correct input:
 - If the input was invalid, the terminal will not be cleared so that the user is able to scroll back up and see the current progress.
 
 ![validation-letter](readme/validation_msg.PNG)
+
+- If the game is won, the user will be shown that the car has crossed the finish line, some ASCII art will congratulate and the user will be asked if the game should end or restart:
+
+![won-game](readme/won_game.PNG)
+
+- If the user looses, the progress before loosing, as well as a different ASCII art will be shown, and a message informing about the loss and the brand to guess:
+
+![lost-game](readme/lost_game.PNG)
+
+- The restart question also has validation and only accepts "y" and "n", both in lower and upper case. Any other input will print a corresponding message and ask for another input:
+
+![end-game-validation](readme/end_game_validation.PNG)
+
+- If the user selects a new game, it starts of with showing the game counter and the original start ASCII art:
+
+![restart-game](readme/game_counter.PNG)
+
+- If the user decides to end the game, a "Thank you" ASCII art will be shown:
+
+![end-game](readme/end_game_msg.PNG)
+
+##
