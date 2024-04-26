@@ -1,5 +1,7 @@
 # The list of words was created using ChatGPT 3.5.
 
+MAX_TRIES = 6
+
 word_list = [
     "Acura",
     "AlfaRomeo",

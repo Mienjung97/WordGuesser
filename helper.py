@@ -3,8 +3,6 @@ import os
 
 # This file contains short functions that improve the game experience
 
-MAX_TRIES = 6
-
 
 def print_line():
     """
