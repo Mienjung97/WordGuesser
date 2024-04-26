@@ -102,7 +102,7 @@ def restart_question(name):
     elif y.lower() == "n":
         cls()
         pause(0.5)
-        print(f"\nThank you for playing the game, {name}!")
+        print_ascii(4)
         print_line()
         exit()
     else:
