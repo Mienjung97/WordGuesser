@@ -24,6 +24,7 @@ After the game is finished, either by winning or loosing, the user will be asked
 ## Features
 
 - The list of words contains 48 different car brands, which are choosen via the "random" module. This list was generated with ChatGPT and modified by me.
+
 - For an easier game, Chinese and Russian car brands were excluded.
 
 ![list](readme/ChatGPT_list.PNG)
@@ -32,7 +33,12 @@ After the game is finished, either by winning or loosing, the user will be asked
 
 ![login](readme/username_input.PNG)
 
+- The validation will provide corresponding error messages for wrong name input and ask for another input:
+
+![name-validation](readme/name_validation.PNG)
+
 - The terminal will clear and provide the user with the games rules, which are printed out with a time delay.
+
 - The rules are too long for the single page, so the terminal will scroll.
 
 ![rules-msg](readme/rules_top.PNG)
@@ -140,9 +146,12 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 The steps for deployment are:
 
 - Create a new Heroku app with a unique name and the region
+
 - In the "settings" tab, set the buildpacks to 'Python' and 'NodeJS' (the order is important)
 - Link the Heroku app to the GitHub repository
+
 - In case it is wished, enable "automatic deploys" to automaticly update the app in case of a new commit
+
 - Click on Deploy in the "manual deploy" area
 
 ## Credits
