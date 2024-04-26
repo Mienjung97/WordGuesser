@@ -145,4 +145,29 @@ The steps for deployment are:
 - In case it is wished, enable "automatic deploys" to automaticly update the app in case of a new commit
 - Click on Deploy in the "manual deploy" area
 
-##
+## Credits
+
+### Honorable mentions 
+- I have to thank my dear partner for being so patient since there is not a lot of free time and yet she fully supports me on a daily basis.
+
+- I am also thankful for my co-student Marceillo, Jan and Linus, who I worked closly together, helped me with questions, gave their input and who helped me in times of question.
+
+- A big thank you goes out to the Tutors who have helped me along my third protfolio project: especially John helped me understand the validation process.
+
+### General reference: 
+- Code Institute's LMS for the python project was very good, understanable and made the project a lot easier.
+
+- A big help for my third project was my Mentor Akshat Garg who helped me with general information before I started and showed duplicate code that I was then able to convert into seperate functions.
+
+- Harvards [CS50](https://www.youtube.com/watch?v=nLRL_NcnK-4&list=WL) course helped me a lot with the understanding of python.
+
+- I used some help from various [YouTube](https://www.youtube.com/) tutorials from [Kite](https://www.youtube.com/watch?v=m4nEnsavl6w&list=WL) and [Shaun Halversion](https://www.youtube.com/watch?v=pFvSb7cb_Us), [stackoverflow](https://stackoverflow.com/) posts and [w3schools](https://www.w3schools.com/) tutorials.
+
+- For understanding some problems, as well as writing the list of words, I also used [ChatGPT](https://chat.openai.com/) to get the explainations I nedded.
+
+
+### Content
+
+- For creating the responsiveness picture, I used [AmIResponsive](https://ui.dev/amiresponsive)
+
+- For creating the ASCII art, I used [patorjk](https://patorjk.com/software/taag/#p=display&f=Slant&t=Type%20Something%20)
