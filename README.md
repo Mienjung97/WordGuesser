@@ -22,3 +22,42 @@ The words to guess are all car brands, ranging from three up to 12 letters. To m
 After the game is finished, either by winning or loosing, the user will be asked to replay or end the game.
 
 ## Features
+
+- The list of words contains 48 different car brands, which are choosen via the "random" module. This list was generated with ChatGPT and modified by me.
+- For an easier game, Chinese and Russian car brands were excluded.
+
+![list](readme/ChatGPT_list.PNG)
+
+- The username input will allow any character and a length between 1 and 23, and after confirming, the game greets the user.
+
+![login](readme/username_input.PNG)
+
+- The terminal will clear and provide the user with the games rules, which are printed out with a time delay.
+- The rules are too long for the single page, so the terminal will scroll.
+
+![rules-msg](readme/rules_top.PNG)
+![rules](readme/rules.PNG)
+
+- After confirming with the "enter" key, the terminal will clear an show the following message:
+
+![start-game](readme/start_msg.PNG)
+
+- This message will be cleared after 5 seconds, then the user will be shown the first "real" game page:
+
+![main-game](readme/main_game.PNG)
+
+- After each guess, the terminal will be cleared and shows the user if the letter was correct or false, as well as every previously guessed letter, the race progress and the fuel guage.
+
+Wrong input:
+
+![wrong](readme/wrong_letter.PNG)
+
+Correct input:
+
+![corret](readme/correct_msg.PNG)
+
+- Every input will be validated and only single letters that have not been guessed will be returned. If the user enters numbers, special symbols or multiple characters, the game will display a corresponding error message and ask again for a new input. 
+
+- If the input was invalid, the terminal will not be cleared so that the user is able to scroll back up and see the current progress.
+
+![validation-letter](readme/validation_msg.PNG)
