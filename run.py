@@ -130,7 +130,9 @@ def guessed_letter_check():
                 cls()
                 return i
         else:
-            print("Please enter only letters, no numbers.\n")
+            print(
+                "Please enter only letters, no numbers or other characters.\n"
+            )
             print_line()
             return guessed_letter_check()
     elif len(i) != 1:
