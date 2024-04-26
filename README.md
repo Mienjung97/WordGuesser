@@ -85,4 +85,21 @@ Correct input (the car gets a bit closer to the finish):
 
 ![end-game](readme/end_game_msg.PNG)
 
+## Data Model
+
+The game does not have any classes and relies just on functions and one global variable. 
+
+For better readability, I moved small functions, like "paused_print" (delayed print) and clearing the terminal into the "helper.py" file. 
+
+The list of words as well as the global constant (game counter) are in the "words.py" file.
+
+The function to print out different ASCII arts is in the file "art.py".
+
+Besides the files and functions that I have created, the game also imports the following modules:
+
+- os
+- time
+- random
+- re
+
 ##
