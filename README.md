@@ -132,3 +132,17 @@ Unsolved Bugs
 ![words-validation](readme/linter_words.PNG)
 ![helper-validation](readme/linter_helper.PNG)
 ![ascii-validation](readme/ascii_validation.PNG)
+
+## Deployment
+
+This project was deployed using Code Institute's mock terminal for Heroku.
+
+The steps for deployment are:
+
+- Create a new Heroku app with a unique name and the region
+- In the "settings" tab, set the buildpacks to 'Python' and 'NodeJS' (the order is important)
+- Link the Heroku app to the GitHub repository
+- In case it is wished, enable "automatic deploys" to automaticly update the app in case of a new commit
+- Click on Deploy in the "manual deploy" area
+
+##
