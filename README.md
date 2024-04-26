@@ -180,3 +180,5 @@ The steps for deployment are:
 - For creating the responsiveness picture, I used [AmIResponsive](https://ui.dev/amiresponsive)
 
 - For creating the ASCII art, I used [patorjk](https://patorjk.com/software/taag/#p=display&f=Slant&t=Type%20Something%20)
+
+- For creating this readme, I took great inspriration from the readme provided in the "Project Portfolio Scope" lesson from the LMS. 
