@@ -1,7 +1,7 @@
 import random
 import re
 import os
-from words import word_list
+from words import word_list, MAX_TRIES
 from art import print_ascii
 from helper import (
     print_line,
@@ -9,7 +9,6 @@ from helper import (
     paused_print_05,
     paused_print_1,
     paused_print_2,
-    MAX_TRIES,
     cls,
 )
 
