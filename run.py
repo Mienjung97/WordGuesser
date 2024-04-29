@@ -54,7 +54,7 @@ def print_rules(name):
     print_line()
     print("WordGuesser is a game like Hangman, just less cruel:")
     print("Instead of hanging a man, you will race against the fuel")
-    paused_print_2("in your racear to try and finish the race.\n")
+    paused_print_2("in your race car to try and finish the race.\n")
     paused_print_05("The game works as following:\n")
     print("1. You need to try and guess a car brand, letter by letter.")
     print('   Brands that contain two words like "Range Rover" will be')
@@ -64,12 +64,12 @@ def print_rules(name):
     paused_print_05("   that you think is contained in the word.\n")
     print("3. If the letter you provided is contained in the word,")
     print("   the game is going to show you in which position it is")
-    paused_print_05("   and your racecar moves forward.\n")
+    paused_print_05("   to be found and your race car moves forward.\n")
     print("4. If the word does not contain the letter, your try ")
     paused_print_05(
         "   counts as a fail and reduces the fuel that you have left.\n"
     )
-    paused_print_05("5. You only have 6 tries, or you loose the game.\n")
+    paused_print_05("5. You only have 6 tries, or you lose the game.\n")
     print(f"6. Have fun, {name}, and try to win as many races as possible!\n")
     print_line()
     pause(5)
@@ -215,7 +215,7 @@ def run_game(word, name):
                 break
     else:
         print_ascii(3)
-        paused_print_1("\nYou are out of fuel and lost!\n")
+        paused_print_1("\nYou are out of fuel and have lost this round!\n")
         paused_print_1(f'The word you were trying to guess was "{word}"\n')
         restart_question(name)
 
