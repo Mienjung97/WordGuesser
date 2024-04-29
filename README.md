@@ -130,7 +130,11 @@ Unsolved Bugs
 
 - The user is able to spam the terminal with invalid inputs without the terminal ever clearing
 
-- Tha game has pauses included, but will take any input at any given time - this results in the possibility of e.g. pressing the "enter" key twice after giving a username, which will result in immediate "continuing" without being able to finish reading the rules.  
+- Tha game has pauses included, but will take any input at any given time - this results in the possibility of e.g. pressing the "enter" key twice after giving a username, which will result in immediate "continuing" without being able to finish reading the rules.
+
+- Even if the "clear terminal" function is called at the end of the rules, in my last tryout, the top message was always displayed if the user scrolls up. Without scrolling, the user does not get to see the message.
+
+![bug](readme/bug.PNG)
 
 ### Validator Testing
 
