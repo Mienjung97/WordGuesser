@@ -30,10 +30,14 @@ def take_user_name_input():
             break
         else:
             print("You must enter a name.")
+            pause(1)
+            cls()
             return take_user_name_input()
     else:
         print("\nYour name is too long for this program.")
         print("Please make it shorter.\n")
+        pause(1)
+        cls()
         return take_user_name_input()
 
     print("-" * 23)
