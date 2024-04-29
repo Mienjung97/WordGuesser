@@ -128,7 +128,9 @@ Solved Bugs
 
 Unsolved Bugs
 
-- No bugs remaining
+- The user is able to spam the termional with invalid inputs without the terminal ever clearing
+
+- Tha game has pauses included, but will take any input at any given time - this results in the possibility of e.g. pressing the "enter" key twice after giving a username, which will result in immediate "continuing" without being able to finish reading the rules.  
 
 ### Validator Testing
 

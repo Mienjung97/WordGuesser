@@ -38,7 +38,7 @@ def take_user_name_input():
 
     print("-" * 23)
     paused_print_1(f"\nHello {name} and welcome to WordGuesser\n")
-    pause(4)
+    pause(3)
     cls()
     return name
 
@@ -123,7 +123,8 @@ def guessed_letter_check():
         if i.isalpha():
             if i in guessed_letters:
                 print(f"The letter {i} already has been guessed by you.")
-                print("Please try again!")
+                print("Please try again!\n")
+                print_line()
                 return guessed_letter_check()
             else:
                 guessed_letters.append(i)
@@ -152,7 +153,6 @@ def print_correct(i, word, new_list, tries, name):
     # https://stackoverflow.com/questions/56324522/program-in-python-to-show-letters-guessed-in-a-hangman-game-not-working
     pos_list = new_list
     for char in word:
-        pause(0.5)
         print(f"\nCongratulations! {i} is in the word!\n")
         # Regular expressions (re) are used to find double occuring letters.
         positions = [m.start() for m in re.finditer(i, word)]
@@ -233,7 +233,7 @@ def animation(word, letter_list, tries):
             print(" ")
         # The unicode numbers represent "Finish flag", "red car"
         # and the "fuel bars".
-        print("\U0001F3C1", "_ " * missing_letter, "\U0001f697")
+        print("_", "\U0001F3C1", "_ " * missing_letter, "\U0001f697")
         while tries > 0:
             print("Your fuel guage: ", "\u2588 " * tries)
             if start != 0:
