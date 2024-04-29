@@ -39,7 +39,7 @@ After the game is finished, either by winning or loosing, the user will be asked
 
 - The terminal will clear and provide the user with game rules, which are printed out with a time delay.
 
-- The rules are too long for the single page, so the terminal will scroll.
+- The rules are too long for the single page, so the terminal will scroll (further info in the "bug" section).
 
 ![rules-msg](readme/rules_top.PNG)
 ![rules](readme/rules.PNG)
@@ -48,7 +48,7 @@ After the game is finished, either by winning or loosing, the user will be asked
 
 ![start-game](readme/start_msg.PNG)
 
-- This message will be cleared after 5 seconds, when the user will be shown the first "real" game page:
+- This message will be cleared after 4 seconds, when the user will be shown the first "real" game page:
 
 ![main-game](readme/main_game.PNG)
 
@@ -67,7 +67,7 @@ Correct input (the car gets a bit closer to the finish):
 
 - Every input will be validated and only single letters that have not been guessed will be returned. If the user enters numbers, special symbols or multiple characters, the game will display a corresponding error message and ask again for a new input. 
 
-- If the input was invalid, the terminal will not be cleared with the goal of allowing the user to scroll back up and see the current game progress (This has been added to unfixed bugs since it can be seen as such as well).
+- If the input was invalid, the terminal will not be cleared with the goal of allowing the user to scroll back up and see the current game progress (this has been added to unfixed bugs since it can be seen as such as well).
 
 ![validation-letter](readme/validation_msg.PNG)
 
@@ -128,11 +128,11 @@ Solved Bugs
 
 Unsolved Bugs
 
-- The user is able to spam the terminal with invalid inputs without the terminal ever clearing
+- The user is able to spam the terminal with invalid inputs without the terminal ever clearing.
 
-- Tha game has pauses included, but will take any input at any given time - this results in the possibility of e.g. pressing the "enter" key twice after giving a username, which will result in immediate "continuing" without being able to finish reading the rules.
+- The game has pauses included, but will take any input at any given time - this results in the possibility of e.g. pressing the "enter" key twice after giving a username, which will result in immediate "continuing" without being able to finish reading the rules.
 
-- Even if the "clear terminal" function is called at the end of the rules, in my last tryout, the top message was always displayed if the user scrolls up. Without scrolling, the user does not get to see the message.
+- Even if the "clear terminal" function is called at the end of the rules, in my last tryout, the top message was always displayed in case the user scrolls up. Without scrolling, the user does not get to see the message.
 
 ![bug](readme/bug.PNG)
 

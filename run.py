@@ -186,7 +186,7 @@ def run_game(word, name):
     game or quit
     """
     print_ascii(1)
-    pause(5)
+    pause(4)
     cls()
     tries = MAX_TRIES
     current_word = word
