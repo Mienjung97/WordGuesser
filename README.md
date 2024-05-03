@@ -23,6 +23,10 @@ After the game is finished, either by winning or loosing, the user will be asked
 
 ## Features
 
+- Flow chart for creation of the app:
+
+![flowchart](readme/flowchart.PNG)
+
 - The list of words contains 48 different car brands, which are chosen via the "random" module. This list was generated with ChatGPT and modified by me.
 
 - For an easier game, Chinese and Russian car brands were excluded.
@@ -188,3 +192,7 @@ The steps for deployment are:
 - For creating the ASCII art, I used [patorjk](https://patorjk.com/software/taag/#p=display&f=Slant&t=Type%20Something%20)
 
 - For creating this readme, I took great inspriration from the readme provided in the "Project Portfolio Scope" lesson from the LMS. 
+
+- The unicode for the emojis were taken from [unicode](https://unicode.org/emoji/charts/full-emoji-list.html)
+
+- For creating the flow chart I used [OpenOffice](https://www.openoffice.org/)
